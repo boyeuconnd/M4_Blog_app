@@ -1,5 +1,7 @@
 package cg.blog;
 
+import cg.blog.services.AccountService;
+import cg.blog.services.AccountServiceImpl;
 import cg.blog.services.BlogService;
 import cg.blog.services.BlogServiceImpl;
 import org.springframework.beans.BeansException;
@@ -123,5 +125,8 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
     public BlogService blogService() {
         return new BlogServiceImpl();
     }
+
+    @Bean
+    public AccountService accountService() { return new AccountServiceImpl(); }
 
 }
