@@ -1,5 +1,6 @@
 package cg.blog;
 
+import cg.blog.aspects.CustomAuthorization;
 import cg.blog.services.AccountService;
 import cg.blog.services.AccountServiceImpl;
 import cg.blog.services.BlogService;
@@ -13,6 +14,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -42,6 +44,7 @@ import java.util.Properties;
 @ComponentScan("cg.blog")
 @EnableJpaRepositories("cg.blog.repositories")
 @EnableSpringDataWebSupport
+@EnableAspectJAutoProxy
 public class AppConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
 
@@ -128,5 +131,10 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
 
     @Bean
     public AccountService accountService() { return new AccountServiceImpl(); }
+
+    @Bean
+    public CustomAuthorization customAuthorization() {
+        return new CustomAuthorization();
+    }
 
 }
